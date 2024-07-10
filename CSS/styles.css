@@ -1,0 +1,246 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #c4dfd8;
+}
+
+.roboto-thin {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.roboto-light {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.roboto-regular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.roboto-medium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.roboto-bold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+}
+
+.roboto-black {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+}
+
+.roboto-thin-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 100;
+    font-style: italic;
+}
+
+.roboto-light-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 300;
+    font-style: italic;
+}
+
+.roboto-regular-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.roboto-medium-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: italic;
+}
+
+.roboto-bold-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.roboto-black-italic {
+    font-family: "Roboto", sans-serif;
+    font-weight: 900;
+    font-style: italic;
+}
+
+
+.header-content {
+    width: 100%;
+    background-color: #2b3e2f;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 10px;
+}
+
+.header-content nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.header-content nav li {
+    margin: 0 15px;
+}
+
+.header-content nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.content {
+    width: 90%;
+    background-color: #c4dfd8;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.view {
+    position: relative;
+}
+
+.diapo {
+    position: relative;
+    width: 100%;
+}
+
+.diapo img {
+    width: 100%;
+    display: block;
+}
+
+.view-text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    color: white;
+    font-size: 2em;
+}
+
+.font {
+    font-family: "jost";
+}
+
+ul ,h2 ,h1 ,div, p {
+    font-family: "jost";
+}
+
+button.avant, button.apres {
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+button.avant {
+    left: 10px;
+}
+
+button.apres {
+    right: 10px;
+}
+
+.habitat, .services, .avis {
+    padding: 40px 20px;
+    background-color: #c4dfd8;
+}
+
+.habitat h2, .services h2, .avis h2 {
+    text-align: left;
+    color: #fff;
+    background-color: #2b3e2f;
+    padding: 10px;
+}
+
+.habitat-grille, .services-grille, .avis-grille {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.habitat-item, .service-item, .avis-item {
+    position: relative;
+    margin: 10px;
+    flex: 1 1 calc(33.333% - 20px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.habitat-item img, .service-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.habitat-text, .service-text {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.avis-item {
+    background-color: #a3c1ad;
+    color: #2b3e2f;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 18%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+footer {
+    background-color: #2b3e2f;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer-content {
+    padding: 20px;
+}
+
+.footer-logo img {
+    height: 40px;
+}
+
+.footer-pdp {
+    background-color: #21412a;
+    padding: 10px 0;
+}
+
+.footer-pdp a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+}
