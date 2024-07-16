@@ -556,8 +556,7 @@ footer {
     gap: 20px;
 }
 
-.btn-accept,
-.btn-decline {
+.btn-accept, .btn-decline {
     width: 50px;
     height: 50px;
     border: none;
