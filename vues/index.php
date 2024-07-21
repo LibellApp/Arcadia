@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../controleurs/AvisControleur.php';
 
 $avisControleur = new AvisControleur();
@@ -14,13 +15,13 @@ $avis = $avisControleur->lireAvis();
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
         <div class="header-content">
             <div class="logo">
-                <img src="../css/images/SVG/EFC_Logo_Arcadia_B_Nom.svg" alt="Arcadia Zoo">
+                <img src="../src/images/logo/EFC_Logo_Arcadia_B_Nom.svg" alt="Arcadia Zoo">
             </div>
             <nav>
                 <ul>
@@ -29,17 +30,44 @@ $avis = $avisControleur->lireAvis();
                     <li><a href="services.php">Services</a></li>
                     <li><a href="contact.php">Contact</a></li>
                     <li><a href="avis.php">Avis</a></li>
-                    <li><a href="connexion.php">Connexion</a></li>
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <li class="user-menu">
+                        <span><?= htmlspecialchars($_SESSION['username']); ?></span>
+                            <div class="separateur"></div>
+                            <div class="menu-der">
+                                <?php if ($_SESSION['role'] === 'Employé'): ?>
+                                    <a href="afficher_avis_attente.php">Afficher Avis en Attente</a>
+                                <?php endif; ?>
+                                <?php if ($_SESSION['role'] === 'Administrateur'): ?>
+                                    <a href="creation_compte.php">Créer un compte</a>
+                                    <a href="modifier_services.php">Modifier les services</a>
+                                    <a href="gerer_habitats_animaux.php">Gérer Habitats et Animaux</a>
+                                <?php endif; ?>
+                                <?php if ($_SESSION['role'] === 'Vétérinaire'): ?>
+                                    <a href="suivi_veterinaire.php">Suivi Vétérinaire</a>
+                                <?php endif; ?>
+                                <a href="../controleurs/deconnexion.php">Se déconnecter</a>
+                            </div>
+                        </li>
+                    <?php else: ?>
+                        <li><a href="connexion.php">Connexion</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
     </header>
 
     <div class="content">
+        <?php
+        if (isset($_SESSION['message'])) {
+            echo "<p>" . $_SESSION['message'] . "</p>";
+            unset($_SESSION['message']);
+        }
+        ?>
         <section class="view">
             <div class="diapo">
                 <button class="avant">&#9664;</button>
-                <img class="big" src="../css/images/JPG/zoo/escalier bois.jpg" alt="Hero Image">
+                <img class="big" src="../src/images/WEBP/escalier-bois.webp" alt="Hero Image">
                 <div class="view-text">
                     <h1>Naturellement, tout simplement</h1>
                 </div>
@@ -51,15 +79,21 @@ $avis = $avisControleur->lireAvis();
             <h2>Habitat</h2>
             <div class="habitat-grille">
                 <div class="habitat-item">
-                    <img src="../css/images/JPG/habitat/enclot_savane_2.jpg" alt="Savane">
+                    <a href="savane.php">
+                        <img class="big" src="../src/images/habitats/enclot-savane-2.webp" alt="Savane">
+                    </a>
                     <div class="habitat-text font">Savane</div>
                 </div>
                 <div class="habitat-item">
-                    <img src="../css/images/JPG/habitat/enclot_jungle.jpg" alt="Jungle">
+                    <a href="jungle.php">
+                    <img src="../src/images/habitats/enclot-jungle.webp" alt="Jungle">
+                    </a>
                     <div class="habitat-text">Jungle</div>
                 </div>
                 <div class="habitat-item">
-                    <img src="../css/images/JPG/habitat/aquarium_2.jpg" alt="Aquarium">
+                    <a href="aquarium.php">
+                    <img src="../src/images/habitats/aquarium-2.webp" alt="Aquarium">
+                    </a>
                     <div class="habitat-text">Aquarium</div>
                 </div>
             </div>
@@ -69,15 +103,15 @@ $avis = $avisControleur->lireAvis();
             <h2>Services</h2>
             <div class="services-grille">
                 <div class="service-item">
-                    <img src="../css/images/JPG/service/restaurant.jpg" alt="Restauration">
+                    <img src="../src/images/WEBP/restaurant.webp" alt="Restauration">
                     <div class="service-text">Restauration</div>
                 </div>
                 <div class="service-item">
-                    <img src="../css/images/JPG/service/visite_guidee_2.jpg" alt="Visites Guidées">
+                    <img src="../src/images/WEBP/visite_guidee_2.webp" alt="Visites Guidées">
                     <div class="service-text">Visites Guidées</div>
                 </div>
                 <div class="service-item">
-                    <img src="../css/images/JPG/service/petit_train.jpg" alt="Visites en petit train">
+                    <img src="../src/images/WEBP/petit_train.webp" alt="Visites en petit train">
                     <div class="service-text">Visites en petit train</div>
                 </div>
             </div>
@@ -102,7 +136,7 @@ $avis = $avisControleur->lireAvis();
                 35000 Lindell - France<br>
                 tel : 02 ** ** ** **</p>
                 <div class="footer-logo">
-                    <img src="../css/images/SVG/EFC_Logo_Arcadia_B_Nom.svg" alt="Arcadia Zoo">
+                    <img src="../src/images/logo/EFC_Logo_Arcadia_B_Nom.svg" alt="Arcadia Zoo">
                 </div>
             </div>
             <div class="footer-pdp">
