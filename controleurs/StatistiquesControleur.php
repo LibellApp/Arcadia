@@ -14,8 +14,3 @@ class StatistiquesControleur {
         return $statistiques;
     }
 }
-
-// Exemple d'utilisation :
-// $statistiquesControleur = new StatistiquesControleur();
-// $statistiques = $statistiquesControleur->lireStatistiques();
-// print_r($statistiques);

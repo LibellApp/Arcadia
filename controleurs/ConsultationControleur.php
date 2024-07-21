@@ -25,7 +25,3 @@ class ConsultationControleur {
         }
     }
 }
-
-// Exemple d'utilisation :
-// $consultationControleur = new ConsultationControleur();
-// $consultationControleur->enregistrerConsultation(1);

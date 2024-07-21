@@ -1,5 +1,6 @@
 <?php
 require_once '../controleurs/AvisControleur.php';
+session_start();
 
 $avisControleur = new AvisControleur();
 $avis = $avisControleur->lireAvis();
@@ -14,13 +15,13 @@ $avis = $avisControleur->lireAvis();
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+<header>
         <div class="header-content">
             <div class="logo">
-                <img src="../css/images/SVG/EFC_Logo_Arcadia_B_Nom.svg" alt="Arcadia Zoo">
+                <img src="../src/images/logo/EFC_Logo_Arcadia_B_Nom.svg" alt="Arcadia Zoo">
             </div>
             <nav>
                 <ul>
@@ -29,15 +30,36 @@ $avis = $avisControleur->lireAvis();
                     <li><a href="services.php">Services</a></li>
                     <li><a href="contact.php">Contact</a></li>
                     <li><a href="avis.php">Avis</a></li>
-                    <li><a href="connexion.php">Connexion</a></li>
+                    <?php if (isset($_SESSION['username'])): ?>
+                        <li class="user-menu">
+                        <span><?= htmlspecialchars($_SESSION['username']); ?></span>
+                            <div class="separateur"></div>
+                            <div class="menu-der">
+                                <?php if ($_SESSION['role'] === 'Employé'): ?>
+                                    <a href="afficher_avis_attente.php">Afficher Avis en Attente</a>
+                                <?php endif; ?>
+                                <?php if ($_SESSION['role'] === 'Administrateur'): ?>
+                                    <a href="creation_compte.php">Créer un compte</a>
+                                    <a href="modifier_services.php">Modifier les services</a>
+                                    <a href="gerer_habitats_animaux.php">Gérer Habitats et Animaux</a>
+                                <?php endif; ?>
+                                <?php if ($_SESSION['role'] === 'Vétérinaire'): ?>
+                                    <a href="suivi_veterinaire.php">Suivi Vétérinaire</a>
+                                <?php endif; ?>
+                                <a href="../controleurs/deconnexion.php">Se déconnecter</a>
+                            </div>
+                        </li>
+                    <?php else: ?>
+                        <li><a href="connexion.php">Connexion</a></li>
+                    <?php endif; ?>
                 </ul>
             </nav>
         </div>
     </header>
 
-    <section class="visitor-avis">
+    <section class="visiteur-avis">
         <h2>Avis des visiteurs</h2>
-        <button class="share-avis">Partager le vôtre !</button>
+        <a href="donner_avis.php"><button class="partage-avis">Partager le vôtre !</button></a>
         <div class="avis-grille">
             <?php foreach ($avis as $un_avis) : ?>
                 <div class="avis-item">
